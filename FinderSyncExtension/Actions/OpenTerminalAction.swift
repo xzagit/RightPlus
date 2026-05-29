@@ -12,31 +12,59 @@ enum OpenTerminalAction {
             dirPath = (path as NSString).deletingLastPathComponent
         }
 
-        let escapedPath = dirPath.replacingOccurrences(of: "'", with: "'\\''")
+        let lowerName = appName.lowercased()
 
-        let scriptContent = """
-        #!/bin/bash
-        cd '\(escapedPath)'
-        exec $SHELL
+        if lowerName.contains("iterm") {
+            openITerm(at: dirPath)
+        } else if lowerName.contains("terminal") {
+            openTerminalApp(at: dirPath)
+        } else {
+            openGeneric(at: dirPath, appName: appName)
+        }
+    }
+
+    private static func openITerm(at path: String) {
+        let escapedPath = path.replacingOccurrences(of: "\\", with: "\\\\")
+            .replacingOccurrences(of: "\"", with: "\\\"")
+
+        let script = """
+        tell application "iTerm"
+            activate
+            create window with default profile command "/bin/bash -c 'cd \\"\(escapedPath)\\" && exec $SHELL'"
+        end tell
         """
+        runAppleScript(script)
+    }
 
-        let scriptFile = "/tmp/.RightPlus_open_terminal.command"
-        try? scriptContent.write(toFile: scriptFile, atomically: true, encoding: .utf8)
+    private static func openTerminalApp(at path: String) {
+        let escapedPath = path.replacingOccurrences(of: "\\", with: "\\\\")
+            .replacingOccurrences(of: "\"", with: "\\\"")
 
-        let chmod = Process()
-        chmod.executableURL = URL(fileURLWithPath: "/bin/chmod")
-        chmod.arguments = ["+x", scriptFile]
-        try? chmod.run()
-        chmod.waitUntilExit()
+        let script = """
+        tell application "Terminal"
+            activate
+            do script "cd \\"\(escapedPath)\\""
+        end tell
+        """
+        runAppleScript(script)
+    }
 
+    private static func openGeneric(at path: String, appName: String) {
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/usr/bin/open")
-        process.arguments = ["-a", appName, scriptFile]
+        process.arguments = ["-a", appName, path]
+        try? process.run()
+    }
+
+    private static func runAppleScript(_ source: String) {
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: "/usr/bin/osascript")
+        process.arguments = ["-e", source]
         do {
             try process.run()
-            rpLog("OpenTerminalAction: launched \(appName)")
+            rpLog("OpenTerminalAction: AppleScript launched")
         } catch {
-            rpLog("OpenTerminalAction: failed: \(error)")
+            rpLog("OpenTerminalAction: AppleScript failed: \(error)")
         }
     }
 }
