@@ -40,13 +40,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		E9C583902FC92F96009D92E5 /* Exceptions for "RightPlus" folder in "RightPlus" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				describation.md,
-			);
-			target = E9C5837B2FC92E24009D92E5 /* RightPlus */;
-		};
 		E9C583A62FC935C1009D92E5 /* Exceptions for "FinderSyncExtension" folder in "FinderSyncExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -56,23 +49,9 @@
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
-/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		E9C583912FC92F96009D92E5 /* Exceptions for "RightPlus" folder in "Compile Sources" phase from "RightPlus" target */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = E9C583782FC92E24009D92E5 /* Sources */;
-			membershipExceptions = (
-				describation.md,
-			);
-		};
-/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		E9C5837E2FC92E24009D92E5 /* RightPlus */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				E9C583902FC92F96009D92E5 /* Exceptions for "RightPlus" folder in "RightPlus" target */,
-				E9C583912FC92F96009D92E5 /* Exceptions for "RightPlus" folder in "Compile Sources" phase from "RightPlus" target */,
-			);
 			path = RightPlus;
 			sourceTree = "<group>";
 		};

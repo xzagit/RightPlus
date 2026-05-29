@@ -106,9 +106,22 @@ All settings take effect immediately — changes are reflected the next time you
 ### Requirements
 
 - macOS 13 Ventura or later
-- Xcode 15+ (for building from source)
 
-### Build from Source
+### Download
+
+Go to the [Releases](https://github.com/xzagit/RightPlus/releases) page and download the latest `RightPlus.dmg`. Mount it and drag RightPlus to your Applications folder.
+
+### First Launch
+
+On first launch, an onboarding guide will walk you through the setup:
+
+1. **Enable Finder Extension** (Required) — click the button to jump to System Settings and enable RightPlus
+2. **Grant Full Disk Access** (Recommended) — allows file creation in any directory
+3. Once setup is complete, right-click in Finder to see the RightPlus menu
+
+> If the Finder extension is not enabled, the main interface will show a warning and block access to settings until the extension is activated.
+
+### Build from Source (Developers)
 
 ```bash
 git clone https://github.com/xzagit/RightPlus.git
@@ -116,16 +129,7 @@ cd RightPlus
 open RightPlus.xcodeproj
 ```
 
-Select the `RightPlus` scheme in Xcode and build (`⌘R`).
-
-> On first launch, you'll need to enable the RightPlus extension in **System Settings → Privacy & Security → Extensions → Finder**.
-
-### First Launch
-
-1. Open the RightPlus app
-2. Go to Overview and follow the prompts to enable the Finder extension
-3. If you want "Open in Terminal", grant Automation permission in System Settings
-4. Right-click in Finder — the RightPlus menu should now appear
+Select the `RightPlus` scheme in Xcode 15+ and build (`⌘R`).
 
 ---
 

@@ -19,6 +19,7 @@ final class SettingsManager: @unchecked Sendable {
         Key.showNewExcel.rawValue: true,
         Key.showNewPowerPoint.rawValue: true,
         Key.showNewBlankFile.rawValue: true,
+        Key.onboardingCompleted.rawValue: false,
     ]
 
     enum Key: String {
@@ -34,6 +35,7 @@ final class SettingsManager: @unchecked Sendable {
         case showNewExcel = "show_new_excel"
         case showNewPowerPoint = "show_new_powerpoint"
         case showNewBlankFile = "show_new_blank_file"
+        case onboardingCompleted = "onboarding_completed"
     }
 
     private init() {

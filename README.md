@@ -106,9 +106,22 @@ RightPlus
 ### 系统要求
 
 - macOS 13 Ventura 或更高版本
-- Xcode 15+（从源码构建）
 
-### 从源码构建
+### 下载安装
+
+前往 [Releases](https://github.com/xzagit/RightPlus/releases) 页面，下载最新版本的 `RightPlus.dmg`，挂载后将 RightPlus 拖入「应用程序」文件夹即可。
+
+### 首次启动
+
+首次打开 RightPlus 会自动弹出引导页，按步骤操作即可：
+
+1. **开启 Finder 扩展**（必须）— 点击引导页中的按钮跳转到系统设置，找到 RightPlus 并启用
+2. **授予完全磁盘访问**（推荐）— 允许在任意目录创建文件
+3. 完成引导后，在 Finder 中右键即可看到 RightPlus 菜单
+
+> 如果未开启 Finder 扩展，主界面会显示提示并阻止进入设置，直到扩展启用。
+
+### 从源码构建（开发者）
 
 ```bash
 git clone https://github.com/xzagit/RightPlus.git
@@ -116,16 +129,7 @@ cd RightPlus
 open RightPlus.xcodeproj
 ```
 
-在 Xcode 中选择 `RightPlus` Scheme，构建并运行（`⌘R`）。
-
-> 注意：首次运行需要在 **系统设置 → 隐私与安全性 → 扩展 → Finder** 中启用 RightPlus 扩展。
-
-### 首次启动
-
-1. 打开 RightPlus App
-2. 进入「总览」页面，按提示开启 Finder 扩展
-3. 如需使用「用终端打开」，还需在系统设置中授予自动化权限
-4. 在 Finder 中右键，即可看到 RightPlus 菜单
+在 Xcode 15+ 中选择 `RightPlus` Scheme，构建并运行（`⌘R`）。
 
 ---
 
