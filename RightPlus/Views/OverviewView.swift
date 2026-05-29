@@ -1,9 +1,13 @@
 import SwiftUI
+import ServiceManagement
 
 struct OverviewView: View {
     @State private var extensionEnabled = false
     @State private var itermInstalled = false
     @State private var vscodeInstalled = false
+    @State private var launchAtLogin = false
+    @State private var silentLaunch = false
+    @State private var hideDockOnClose = true
 
     var body: some View {
         Form {
@@ -12,6 +16,23 @@ struct OverviewView: View {
                 StatusRow(title: "终端应用", status: terminalStatus(), isOK: itermInstalled)
                 StatusRow(title: "编辑器", status: editorStatus(), isOK: vscodeInstalled)
                 StatusRow(title: "模板文件", status: "已内置", isOK: true)
+            }
+
+            Section("启动设置") {
+                Toggle("开机自动启动", isOn: $launchAtLogin)
+                    .onChange(of: launchAtLogin) { _, newValue in
+                        setLaunchAtLogin(newValue)
+                    }
+
+                Toggle("静默启动（不显示窗口）", isOn: $silentLaunch)
+                    .onChange(of: silentLaunch) { _, newValue in
+                        SettingsManager.shared.set(newValue, for: .silentLaunch)
+                    }
+
+                Toggle("关闭窗口后隐藏 Dock 图标", isOn: $hideDockOnClose)
+                    .onChange(of: hideDockOnClose) { _, newValue in
+                        SettingsManager.shared.set(newValue, for: .hideDockOnClose)
+                    }
             }
 
             Section("快捷操作") {
@@ -25,7 +46,25 @@ struct OverviewView: View {
         }
         .formStyle(.grouped)
         .navigationTitle("总览")
-        .onAppear { checkStatus() }
+        .onAppear {
+            checkStatus()
+            launchAtLogin = SettingsManager.shared.bool(for: .launchAtLogin)
+            silentLaunch = SettingsManager.shared.bool(for: .silentLaunch)
+            hideDockOnClose = SettingsManager.shared.bool(for: .hideDockOnClose)
+        }
+    }
+
+    private func setLaunchAtLogin(_ enabled: Bool) {
+        SettingsManager.shared.set(enabled, for: .launchAtLogin)
+        do {
+            if enabled {
+                try SMAppService.mainApp.register()
+            } else {
+                try SMAppService.mainApp.unregister()
+            }
+        } catch {
+            launchAtLogin = !enabled
+        }
     }
 
     private func terminalStatus() -> String {

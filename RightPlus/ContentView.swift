@@ -27,38 +27,38 @@ enum SidebarItem: String, CaseIterable, Identifiable {
 struct ContentView: View {
     @State private var selection: SidebarItem = .overview
     @State private var showOnboarding = false
-    @State private var extensionEnabled = true
+    @State private var showExtensionBanner = false
 
     var body: some View {
-        Group {
-            if extensionEnabled {
-                NavigationSplitView {
-                    List(SidebarItem.allCases, selection: $selection) { item in
-                        Label(item.rawValue, systemImage: item.icon)
-                            .tag(item)
-                    }
-                    .navigationSplitViewColumnWidth(min: 160, ideal: 180)
-                } detail: {
-                    switch selection {
-                    case .overview:
-                        OverviewView()
-                    case .menuSettings:
-                        MenuSettingsView()
-                    case .newFile:
-                        NewFileSettingsView()
-                    case .openWith:
-                        OpenWithSettingsView()
-                    case .templates:
-                        TemplateManagementView()
-                    case .diagnostics:
-                        DiagnosticsView()
-                    case .about:
-                        AboutView()
-                    }
+        VStack(spacing: 0) {
+            if showExtensionBanner {
+                ExtensionBannerView {
+                    showExtensionBanner = false
                 }
-            } else {
-                ExtensionDisabledView {
-                    checkExtensionStatus()
+            }
+
+            NavigationSplitView {
+                List(SidebarItem.allCases, selection: $selection) { item in
+                    Label(item.rawValue, systemImage: item.icon)
+                        .tag(item)
+                }
+                .navigationSplitViewColumnWidth(min: 160, ideal: 180)
+            } detail: {
+                switch selection {
+                case .overview:
+                    OverviewView()
+                case .menuSettings:
+                    MenuSettingsView()
+                case .newFile:
+                    NewFileSettingsView()
+                case .openWith:
+                    OpenWithSettingsView()
+                case .templates:
+                    TemplateManagementView()
+                case .diagnostics:
+                    DiagnosticsView()
+                case .about:
+                    AboutView()
                 }
             }
         }
@@ -68,59 +68,43 @@ struct ContentView: View {
         .onAppear {
             if !SettingsManager.shared.bool(for: .onboardingCompleted) {
                 showOnboarding = true
+                showExtensionBanner = true
             }
-            checkExtensionStatus()
         }
-    }
-
-    private func checkExtensionStatus() {
-        let extensionBundleID = "cn.xuziao.RightPlus.FinderSyncExtension"
-        let process = Process()
-        process.executableURL = URL(fileURLWithPath: "/usr/bin/pluginkit")
-        process.arguments = ["-m", "-i", extensionBundleID]
-        let pipe = Pipe()
-        process.standardOutput = pipe
-        try? process.run()
-        process.waitUntilExit()
-        let output = String(data: pipe.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8) ?? ""
-        extensionEnabled = output.contains(extensionBundleID)
     }
 }
 
-struct ExtensionDisabledView: View {
-    var onRecheck: () -> Void
+struct ExtensionBannerView: View {
+    var onDismiss: () -> Void
 
     var body: some View {
-        VStack(spacing: 20) {
+        HStack(spacing: 10) {
             Image(systemName: "exclamationmark.triangle.fill")
-                .font(.system(size: 56))
                 .foregroundColor(.orange)
 
-            Text("Finder 扩展未启用")
-                .font(.title)
-                .fontWeight(.bold)
+            Text("请确保已在「系统设置 → 扩展 → 已添加的扩展」中启用 RightPlus 的 Finder 扩展")
+                .font(.callout)
 
-            Text("RightPlus 需要 Finder 扩展才能工作。\n请在系统设置中启用扩展，然后点击下方「重新检测」。")
-                .font(.body)
-                .foregroundColor(.secondary)
-                .multilineTextAlignment(.center)
-                .frame(maxWidth: 400)
+            Spacer()
 
-            VStack(spacing: 12) {
-                Button("打开系统设置 - 扩展") {
-                    if let url = URL(string: "x-apple.systempreferences:com.apple.ExtensionsPreferences") {
-                        NSWorkspace.shared.open(url)
-                    }
+            Button("打开系统设置") {
+                if let url = URL(string: "x-apple.systempreferences:com.apple.ExtensionsPreferences") {
+                    NSWorkspace.shared.open(url)
                 }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.large)
-
-                Button("重新检测") {
-                    onRecheck()
-                }
-                .buttonStyle(.bordered)
             }
+            .buttonStyle(.bordered)
+            .controlSize(.small)
+
+            Button {
+                onDismiss()
+            } label: {
+                Image(systemName: "xmark")
+                    .foregroundColor(.secondary)
+            }
+            .buttonStyle(.plain)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 10)
+        .background(Color.orange.opacity(0.1))
     }
 }

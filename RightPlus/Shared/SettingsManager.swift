@@ -20,6 +20,9 @@ final class SettingsManager: @unchecked Sendable {
         Key.showNewPowerPoint.rawValue: true,
         Key.showNewBlankFile.rawValue: true,
         Key.onboardingCompleted.rawValue: false,
+        Key.launchAtLogin.rawValue: false,
+        Key.silentLaunch.rawValue: false,
+        Key.hideDockOnClose.rawValue: true,
     ]
 
     enum Key: String {
@@ -36,6 +39,9 @@ final class SettingsManager: @unchecked Sendable {
         case showNewPowerPoint = "show_new_powerpoint"
         case showNewBlankFile = "show_new_blank_file"
         case onboardingCompleted = "onboarding_completed"
+        case launchAtLogin = "launch_at_login"
+        case silentLaunch = "silent_launch"
+        case hideDockOnClose = "hide_dock_on_close"
     }
 
     private init() {
