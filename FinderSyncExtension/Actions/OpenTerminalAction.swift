@@ -1,4 +1,5 @@
 import Foundation
+import AppKit
 
 enum OpenTerminalAction {
     static func open(path: String, appName: String) {
@@ -12,59 +13,29 @@ enum OpenTerminalAction {
             dirPath = (path as NSString).deletingLastPathComponent
         }
 
-        let lowerName = appName.lowercased()
+        let folderURL = URL(fileURLWithPath: dirPath, isDirectory: true)
 
-        if lowerName.contains("iterm") {
-            openITerm(at: dirPath)
-        } else if lowerName.contains("terminal") {
-            openTerminalApp(at: dirPath)
-        } else {
-            openGeneric(at: dirPath, appName: appName)
+        let appPaths = [
+            "/Applications/\(appName).app",
+            "/Applications/Utilities/\(appName).app",
+            "/System/Applications/Utilities/\(appName).app",
+        ]
+
+        guard let appPath = appPaths.first(where: { FileManager.default.fileExists(atPath: $0) }) else {
+            rpLog("OpenTerminalAction: app not found: \(appName)")
+            return
         }
-    }
 
-    private static func openITerm(at path: String) {
-        let escapedPath = path.replacingOccurrences(of: "\\", with: "\\\\")
-            .replacingOccurrences(of: "\"", with: "\\\"")
+        let appURL = URL(fileURLWithPath: appPath)
+        let config = NSWorkspace.OpenConfiguration()
+        config.activates = true
 
-        let script = """
-        tell application "iTerm"
-            activate
-            create window with default profile command "/bin/bash -c 'cd \\"\(escapedPath)\\" && exec $SHELL'"
-        end tell
-        """
-        runAppleScript(script)
-    }
-
-    private static func openTerminalApp(at path: String) {
-        let escapedPath = path.replacingOccurrences(of: "\\", with: "\\\\")
-            .replacingOccurrences(of: "\"", with: "\\\"")
-
-        let script = """
-        tell application "Terminal"
-            activate
-            do script "cd \\"\(escapedPath)\\""
-        end tell
-        """
-        runAppleScript(script)
-    }
-
-    private static func openGeneric(at path: String, appName: String) {
-        let process = Process()
-        process.executableURL = URL(fileURLWithPath: "/usr/bin/open")
-        process.arguments = ["-a", appName, path]
-        try? process.run()
-    }
-
-    private static func runAppleScript(_ source: String) {
-        let process = Process()
-        process.executableURL = URL(fileURLWithPath: "/usr/bin/osascript")
-        process.arguments = ["-e", source]
-        do {
-            try process.run()
-            rpLog("OpenTerminalAction: AppleScript launched")
-        } catch {
-            rpLog("OpenTerminalAction: AppleScript failed: \(error)")
+        NSWorkspace.shared.open([folderURL], withApplicationAt: appURL, configuration: config) { _, error in
+            if let error = error {
+                rpLog("OpenTerminalAction: NSWorkspace error: \(error)")
+            } else {
+                rpLog("OpenTerminalAction: success")
+            }
         }
     }
 }
