@@ -8,8 +8,10 @@ xcuserdata/
 # macOS
 .DS_Store
 
-# Agent 配置（本地使用，不上传）
+# 本地开发文件（不上传）
 AGENTS.md
+docs/
+scripts/
 
 # Swift Package Manager
 .build/
