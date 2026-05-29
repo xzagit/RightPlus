@@ -1,10 +1,3 @@
-//
-//  RightPlusApp.swift
-//  RightPlus
-//
-//  Created by 徐子傲 on 2026/5/29.
-//
-
 import SwiftUI
 
 @main
@@ -13,5 +6,7 @@ struct RightPlusApp: App {
         WindowGroup {
             ContentView()
         }
+        .windowStyle(.titleBar)
+        .defaultSize(width: 700, height: 500)
     }
 }

@@ -6,20 +6,95 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		E9C583A22FC935C1009D92E5 /* FinderSyncExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E9C5839B2FC935C1009D92E5 /* FinderSyncExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E9C583A02FC935C1009D92E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E9C583742FC92E24009D92E5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E9C5839A2FC935C1009D92E5;
+			remoteInfo = FinderSyncExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E9C583A72FC935C1009D92E5 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E9C583A22FC935C1009D92E5 /* FinderSyncExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		E9C5837C2FC92E24009D92E5 /* RightPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RightPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9C5839B2FC935C1009D92E5 /* FinderSyncExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FinderSyncExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		E9C583902FC92F96009D92E5 /* Exceptions for "RightPlus" folder in "RightPlus" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				describation.md,
+			);
+			target = E9C5837B2FC92E24009D92E5 /* RightPlus */;
+		};
+		E9C583A62FC935C1009D92E5 /* Exceptions for "FinderSyncExtension" folder in "FinderSyncExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = E9C5839A2FC935C1009D92E5 /* FinderSyncExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		E9C583912FC92F96009D92E5 /* Exceptions for "RightPlus" folder in "Compile Sources" phase from "RightPlus" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = E9C583782FC92E24009D92E5 /* Sources */;
+			membershipExceptions = (
+				describation.md,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		E9C5837E2FC92E24009D92E5 /* RightPlus */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				E9C583902FC92F96009D92E5 /* Exceptions for "RightPlus" folder in "RightPlus" target */,
+				E9C583912FC92F96009D92E5 /* Exceptions for "RightPlus" folder in "Compile Sources" phase from "RightPlus" target */,
+			);
 			path = RightPlus;
+			sourceTree = "<group>";
+		};
+		E9C5839C2FC935C1009D92E5 /* FinderSyncExtension */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				E9C583A62FC935C1009D92E5 /* Exceptions for "FinderSyncExtension" folder in "FinderSyncExtension" target */,
+			);
+			path = FinderSyncExtension;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		E9C583792FC92E24009D92E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9C583982FC935C1009D92E5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				E9C5837E2FC92E24009D92E5 /* RightPlus */,
+				E9C5839C2FC935C1009D92E5 /* FinderSyncExtension */,
 				E9C5837D2FC92E24009D92E5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				E9C5837C2FC92E24009D92E5 /* RightPlus.app */,
+				E9C5839B2FC935C1009D92E5 /* FinderSyncExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -55,10 +132,12 @@
 				E9C583782FC92E24009D92E5 /* Sources */,
 				E9C583792FC92E24009D92E5 /* Frameworks */,
 				E9C5837A2FC92E24009D92E5 /* Resources */,
+				E9C583A72FC935C1009D92E5 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E9C583A12FC935C1009D92E5 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				E9C5837E2FC92E24009D92E5 /* RightPlus */,
@@ -69,6 +148,28 @@
 			productName = RightPlus;
 			productReference = E9C5837C2FC92E24009D92E5 /* RightPlus.app */;
 			productType = "com.apple.product-type.application";
+		};
+		E9C5839A2FC935C1009D92E5 /* FinderSyncExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E9C583A32FC935C1009D92E5 /* Build configuration list for PBXNativeTarget "FinderSyncExtension" */;
+			buildPhases = (
+				E9C583972FC935C1009D92E5 /* Sources */,
+				E9C583982FC935C1009D92E5 /* Frameworks */,
+				E9C583992FC935C1009D92E5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				E9C5839C2FC935C1009D92E5 /* FinderSyncExtension */,
+			);
+			name = FinderSyncExtension;
+			packageProductDependencies = (
+			);
+			productName = FinderSyncExtension;
+			productReference = E9C5839B2FC935C1009D92E5 /* FinderSyncExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -81,6 +182,9 @@
 				LastUpgradeCheck = 2630;
 				TargetAttributes = {
 					E9C5837B2FC92E24009D92E5 = {
+						CreatedOnToolsVersion = 26.3;
+					};
+					E9C5839A2FC935C1009D92E5 = {
 						CreatedOnToolsVersion = 26.3;
 					};
 				};
@@ -100,12 +204,20 @@
 			projectRoot = "";
 			targets = (
 				E9C5837B2FC92E24009D92E5 /* RightPlus */,
+				E9C5839A2FC935C1009D92E5 /* FinderSyncExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		E9C5837A2FC92E24009D92E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9C583992FC935C1009D92E5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +234,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E9C583972FC935C1009D92E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E9C583A12FC935C1009D92E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E9C5839A2FC935C1009D92E5 /* FinderSyncExtension */;
+			targetProxy = E9C583A02FC935C1009D92E5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		E9C583852FC92E25009D92E5 /* Debug */ = {
@@ -248,12 +375,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = RightPlus/RightPlus.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6FMDB5TQT5;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
-				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -263,7 +391,6 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cn.xuziao.RightPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
@@ -278,12 +405,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = RightPlus/RightPlus.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6FMDB5TQT5;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
-				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -293,10 +421,71 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cn.xuziao.RightPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		E9C583A42FC935C1009D92E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = FinderSyncExtension/FinderSyncExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6FMDB5TQT5;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FinderSyncExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FinderSyncExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.xuziao.RightPlus.FinderSyncExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E9C583A52FC935C1009D92E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = FinderSyncExtension/FinderSyncExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6FMDB5TQT5;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FinderSyncExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FinderSyncExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.xuziao.RightPlus.FinderSyncExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
@@ -320,6 +509,15 @@
 			buildConfigurations = (
 				E9C583882FC92E25009D92E5 /* Debug */,
 				E9C583892FC92E25009D92E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E9C583A32FC935C1009D92E5 /* Build configuration list for PBXNativeTarget "FinderSyncExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9C583A42FC935C1009D92E5 /* Debug */,
+				E9C583A52FC935C1009D92E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
